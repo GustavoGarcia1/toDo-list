@@ -31,5 +31,5 @@ body, input, button {
   line-height:140%;
   font-weight: 400;
   font-size: 1rem;
-  background-color: var(--gray-400);
+  background-color: var(--gray-500);
 }
