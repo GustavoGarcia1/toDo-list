@@ -1,0 +1,44 @@
+.task {
+  display: flex; 
+  align-items: flex-start;
+  justify-content: space-between;
+  background: var(--gray-400);
+  padding: 1rem;
+  max-width: 780px;
+  gap: 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.input input {
+  border: '50%'
+}
+
+
+.input p {
+  color: var(--gray-100);
+  text-align: justify;
+  font-size: 0.875rem;
+}
+
+.task svg:first-child {
+  color: var(--blue);
+}
+
+.task svg:first-child:hover {
+  color: var(--blue-dark);
+}
+
+.task svg {
+  color: var(--gray-300);
+}
+
+.task svg:hover {
+  color: var(--danger);
+}
