@@ -5,9 +5,10 @@ import styles from "./Task.module.css";
 
 
 import clipboard from '../assets/clipboard.svg';
+import { Input } from "./Input";
 
 interface Task {
-  name: string;
+  text: string;
   completed: boolean;
 }
 
@@ -21,10 +22,9 @@ export function Task() {
 
   function handleCreateNewTask(event: FormEvent) {
     event.preventDefault();
-    setTasks([...tasks, {name: newTask, completed: false}]);
+    setTasks([...tasks, {text: newTask, completed: false}]);
     
     setNewTask('');
-    console.log(tasks);
   }
 
   return (
@@ -44,8 +44,7 @@ export function Task() {
       </form>
       <header>
         <div>
-          <span>Tarefas criadas</span>
-          <span> 0 </span>
+          <span>{`Tarefas criadas ${tasks.length}`}</span>
         </div>
         <div>
           <span>Concluídas</span>
@@ -62,13 +61,10 @@ export function Task() {
         </div>
         :
         tasks.map(task => (
-          <div key={task.name} className={styles.taskList}>
-            <div className={styles.input}>
-              <input type="checkbox"/>
-              <p>{task.name}</p>
-            </div>
-            <Trash size={20} />
-          </div>
+          <Input 
+            text={task.text}
+            completed={false}
+          />
         ))
       }
     </div>
