@@ -22,11 +22,20 @@
   color: var(--blue);
 }
 
-.task header span {
+.task header div:nth-child(2){
   font-size: 1rem;
   font-weight: bold;
 
   color: var(--purple);
+}
+
+.task header div span:nth-child(2){
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 3px;
+  border-radius: 5px;
+  color: var(--gray-100);
+  background: var(--gray-400);
 }
 
 .newTask {

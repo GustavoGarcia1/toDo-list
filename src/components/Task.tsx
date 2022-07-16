@@ -15,6 +15,7 @@ interface Task {
 export function Task() {
   const [newTask, setNewTask] = useState('');
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasksCompleted, setTasksCompleted] = useState(0);
 
   function handleNewTask(event: ChangeEvent<HTMLInputElement>) {
     setNewTask(event.target.value);
@@ -22,14 +23,36 @@ export function Task() {
 
   function handleCreateNewTask(event: FormEvent) {
     event.preventDefault();
-    setTasks([...tasks, {text: newTask, completed: false}]);
-    
+    setTasks([...tasks, { text: newTask, completed: false }]);
+
     setNewTask('');
   }
 
+  function deleteTask(taskToDelete: string) {
+    const tasksWithoutDeletedOne = tasks.filter(task => {
+      return task.text !== taskToDelete
+    })
+    setTasks(tasksWithoutDeletedOne);
+  }
+
+  function changeTask(taskToComplete: string) {
+    const taskWithChange = tasks.findIndex(task => {
+      return task.text === taskToComplete
+    })
+
+    const taskTmp = [...tasks];
+    taskTmp[taskWithChange].completed = !taskTmp[taskWithChange].completed;
+
+    setTasks(taskTmp);
+
+    let tasksCompleted = taskTmp.filter(({ completed }) => completed === true)
+
+    setTasksCompleted(tasksCompleted.length);
+
+  }
   return (
     <div className={styles.task}>
-      <form  onSubmit={handleCreateNewTask}className={styles.newTask}>
+      <form onSubmit={handleCreateNewTask} className={styles.newTask}>
         <input
           type="text"
           placeholder="Adicione uma nota tarefa"
@@ -47,8 +70,8 @@ export function Task() {
           <span>{`Tarefas criadas ${tasks.length}`}</span>
         </div>
         <div>
-          <span>Concluídas</span>
-          <span> 0 </span>
+          <span>Concluídas </span>
+          <span className={styles.teste}>{`${tasksCompleted} de ${tasks.length}`}</span>
         </div>
       </header>
       {tasks.length === 0 ?
@@ -61,9 +84,11 @@ export function Task() {
         </div>
         :
         tasks.map(task => (
-          <Input 
+          <Input
             text={task.text}
-            completed={false}
+            completed={task.completed}
+            onDeleteTask={deleteTask}
+            onChangeTask={changeTask}
           />
         ))
       }
