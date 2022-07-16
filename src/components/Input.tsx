@@ -6,26 +6,39 @@ import styles from "./Input.module.css";
 interface TaskProps {
   text: string;
   completed: boolean;
+  onDeleteTask: (text: string) => void;
+  onChangeTask: (text: string) => void;
 }
 
-export function Input({ text, completed }:TaskProps) {
-  const [task, setTask] = useState<TaskProps>({text, completed});
+export function Input({ text, completed, onDeleteTask, onChangeTask }: TaskProps) {
+  const [task, setTask] = useState<TaskProps>({ text, completed, onDeleteTask, onChangeTask });
 
   function handleClickCheckBox() {
-    setTask({...task, completed: !task.completed});
+    completed = !completed;
+
+    onChangeTask(text);
+  }
+
+  function handleDeleteTask() {
+    onDeleteTask(task.text);
   }
 
   return (
     <div key={text} className={styles.task}>
       <div className={styles.input}>
-        {task.completed ? 
-          <CheckCircle size={20} onClick={handleClickCheckBox}/>
+        {completed ?
+          <>
+            <CheckCircle size={20} onClick={handleClickCheckBox} />
+            <p className={styles.taskCompleted}>{text}</p>
+          </>
           :
-          <Circle size={20} onClick={handleClickCheckBox}/>
+          <>
+            <Circle size={20} onClick={handleClickCheckBox} />
+            <p className={styles.taskNotCompleted}>{text}</p>
+          </>
         }
-        <p>{task.text}</p>
       </div>
-      <Trash size={20} />
+      <Trash size={20} onClick={handleDeleteTask} />
     </div>
   )
 }
