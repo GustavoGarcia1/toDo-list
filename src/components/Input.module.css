@@ -12,6 +12,7 @@
 
 .input {
   display: flex;
+  width: 42rem;
   align-items: center;
   gap: 0.5rem;
 }

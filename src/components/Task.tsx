@@ -71,7 +71,7 @@ export function Task() {
         </div>
         <div>
           <span>Concluídas </span>
-          <span className={styles.teste}>{`${tasksCompleted} de ${tasks.length}`}</span>
+          <span>{`${tasksCompleted} de ${tasks.length}`}</span>
         </div>
       </header>
       {tasks.length === 0 ?
