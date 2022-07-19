@@ -17,10 +17,6 @@
   gap: 0.5rem;
 }
 
-.input input {
-  border: '50%'
-}
-
 
 .taskNotCompleted {
   color: var(--gray-100);
@@ -35,18 +31,25 @@
   text-decoration-line: line-through;
 }
 
-.task svg:first-child {
+.checkCircle {
+  color: var(--purple);
+}
+
+.checkCircle:hover {
+  color: var(--purple-dark);
+}
+.check {
   color: var(--blue);
 }
 
-.task svg:first-child:hover {
+.check:hover {
   color: var(--blue-dark);
 }
 
-.task svg {
+.task svg:last-child {
   color: var(--gray-300);
 }
 
-.task svg:hover {
+.task svg:last-child:hover {
   color: var(--danger);
 }
