@@ -28,12 +28,12 @@ export function Input({ text, completed, onDeleteTask, onChangeTask }: TaskProps
       <div className={styles.input}>
         {completed ?
           <>
-            <CheckCircle size={20} onClick={handleClickCheckBox} />
+            <CheckCircle size={25} onClick={handleClickCheckBox} color="#5E60CE"/>
             <p className={styles.taskCompleted}>{text}</p>
           </>
           :
           <>
-            <Circle size={20} onClick={handleClickCheckBox} />
+            <Circle size={25} onClick={handleClickCheckBox} />
             <p className={styles.taskNotCompleted}>{text}</p>
           </>
         }
